@@ -1,0 +1,19 @@
+name: riversafe-sac
+services:
+  - static_sites:
+      name: web
+      github:
+        repo: <owner>/SacRiverSafety
+        branch: main
+      build_command: |
+        flutter pub get
+        flutter build web --release
+      output_dir: build/web
+      routes:
+        - path: /
+      environment_slug: html
+envs:
+  - key: FLUTTER_VERSION
+    value: "3.19.0"
+  - key: NODE_VERSION
+    value: "20" 
