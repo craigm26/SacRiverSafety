@@ -5,8 +5,8 @@ class TrailCondition extends Equatable {
   final double temperature;
   final int airQualityIndex;
   final String weatherCondition;
-  final DateTime sunrise;
-  final DateTime sunset;
+  final DateTime? sunrise;
+  final DateTime? sunset;
   final List<String> alerts;
   final String overallSafety; // 'safe', 'caution', 'danger'
 

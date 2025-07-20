@@ -1,4 +1,4 @@
-import 'package:riversafe_sac/domain/entities/river_condition.dart';
+import 'package:sacriversafety/domain/entities/river_condition.dart';
 
 /// Service for fetching river data from external APIs
 class RiverService {

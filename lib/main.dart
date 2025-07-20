@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:riversafe_sac/app.dart';
-import 'package:riversafe_sac/core/di/injection.dart';
+import 'package:sacriversafety/app.dart';
+import 'package:sacriversafety/core/di/injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -8,5 +8,5 @@ void main() async {
   // Initialize dependency injection
   await initializeDependencies();
   
-  runApp(const RiverSafeSacApp());
+  runApp(const sacriversafetyApp());
 } 

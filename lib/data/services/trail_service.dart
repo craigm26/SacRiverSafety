@@ -1,5 +1,5 @@
-import 'package:riversafe_sac/domain/entities/trail_condition.dart';
-import 'package:riversafe_sac/domain/repositories/trail_repository.dart';
+import 'package:sacriversafety/domain/entities/trail_condition.dart';
+import 'package:sacriversafety/domain/repositories/trail_repository.dart';
 
 /// Service for fetching trail data from external APIs
 class TrailService {

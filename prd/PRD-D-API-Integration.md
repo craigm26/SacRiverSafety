@@ -1,5 +1,5 @@
 # PRD-D · Real API Integration
-**Parent project:** RiverSafeSac.com  
+**Parent project:** sacriversafety.com  
 **Feature:** Live data integration with USGS, Weather, and Air Quality APIs
 
 ## 1. Purpose

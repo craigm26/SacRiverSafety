@@ -1,6 +1,6 @@
-import 'package:riversafe_sac/data/services/trail_service.dart';
-import 'package:riversafe_sac/domain/entities/trail_condition.dart';
-import 'package:riversafe_sac/domain/repositories/trail_repository.dart';
+import 'package:sacriversafety/data/services/trail_service.dart';
+import 'package:sacriversafety/domain/entities/trail_condition.dart';
+import 'package:sacriversafety/domain/repositories/trail_repository.dart';
 
 /// Implementation of TrailRepository
 class TrailRepositoryImpl implements TrailRepository {

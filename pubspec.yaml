@@ -1,4 +1,4 @@
-name: riversafe_sac
+name: sacriversafety
 description: A data-driven, mobile-friendly app for Sacramento & American River safety information
 publish_to: 'none'
 version: 1.0.0+1
@@ -35,6 +35,7 @@ dependencies:
   
   # Maps & Location
   flutter_map: ^6.1.0
+  latlong2: ^0.9.0
   geolocator: ^10.1.0
   
   # Charts & Data Visualization

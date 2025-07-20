@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:riversafe_sac/presentation/pages/home_page.dart';
-import 'package:riversafe_sac/presentation/themes/app_theme.dart';
-import 'package:riversafe_sac/core/di/injection.dart';
-import 'package:riversafe_sac/presentation/cubits/home_cubit.dart';
-import 'package:riversafe_sac/presentation/cubits/river_cubit.dart';
-import 'package:riversafe_sac/presentation/cubits/trail_cubit.dart';
+import 'package:sacriversafety/presentation/themes/app_theme.dart';
+import 'package:sacriversafety/core/di/injection.dart';
+import 'package:sacriversafety/core/router/app_router.dart';
+import 'package:sacriversafety/presentation/cubits/home_cubit.dart';
+import 'package:sacriversafety/presentation/cubits/river_cubit.dart';
+import 'package:sacriversafety/presentation/cubits/trail_cubit.dart';
 
-class RiverSafeSacApp extends StatelessWidget {
-  const RiverSafeSacApp({super.key});
+class sacriversafetyApp extends StatelessWidget {
+  const sacriversafetyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,11 @@ class RiverSafeSacApp extends StatelessWidget {
           create: (context) => getIt<TrailCubit>(),
         ),
       ],
-      child: MaterialApp(
-        title: 'RiverSafeSac',
+      child: MaterialApp.router(
+        title: 'SacRiverSafety',
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
-        home: const HomePage(),
+        routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
       ),
     );

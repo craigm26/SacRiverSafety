@@ -1,4 +1,4 @@
-import 'package:riversafe_sac/domain/entities/trail_condition.dart';
+import 'package:sacriversafety/domain/entities/trail_condition.dart';
 
 /// Repository interface for trail-related data operations
 abstract class TrailRepository {

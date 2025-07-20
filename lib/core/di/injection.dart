@@ -1,13 +1,13 @@
 import 'package:get_it/get_it.dart';
-import 'package:riversafe_sac/data/repositories/river_repository_impl.dart';
-import 'package:riversafe_sac/data/repositories/trail_repository_impl.dart';
-import 'package:riversafe_sac/data/services/river_service.dart';
-import 'package:riversafe_sac/data/services/trail_service.dart';
-import 'package:riversafe_sac/domain/repositories/river_repository.dart';
-import 'package:riversafe_sac/domain/repositories/trail_repository.dart';
-import 'package:riversafe_sac/presentation/cubits/home_cubit.dart';
-import 'package:riversafe_sac/presentation/cubits/river_cubit.dart';
-import 'package:riversafe_sac/presentation/cubits/trail_cubit.dart';
+import 'package:sacriversafety/data/repositories/river_repository_impl.dart';
+import 'package:sacriversafety/data/repositories/trail_repository_impl.dart';
+import 'package:sacriversafety/data/services/river_service.dart';
+import 'package:sacriversafety/data/services/trail_service.dart';
+import 'package:sacriversafety/domain/repositories/river_repository.dart';
+import 'package:sacriversafety/domain/repositories/trail_repository.dart';
+import 'package:sacriversafety/presentation/cubits/home_cubit.dart';
+import 'package:sacriversafety/presentation/cubits/river_cubit.dart';
+import 'package:sacriversafety/presentation/cubits/trail_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
 

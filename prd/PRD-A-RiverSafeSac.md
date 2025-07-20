@@ -1,4 +1,4 @@
-# PRD-A · RiverSafeSac.com
+# PRD-A · SacRiverSafety.com
 
 ## 1. Purpose
 Create a data‑driven, mobile‑friendly static website that consolidates drowning statistics, live river conditions, safety resources, and community stories for the Sacramento & American River corridor.
@@ -103,9 +103,3 @@ This project welcomes open source contributions and will be hosted on DigitalOce
 - **Secondary**: Website traffic and engagement metrics
 - **Tertiary**: Community adoption of safety resources
 - **Technical**: Site performance, uptime, and data accuracy
-
-## 11. Timeline
-- **Phase 1** (Month 1-2): Core website development and data pipeline
-- **Phase 2** (Month 3): River conditions integration and mapping
-- **Phase 3** (Month 4): Community features and open source launch
-- **Phase 4** (Ongoing): Iterative improvements based on user feedback 

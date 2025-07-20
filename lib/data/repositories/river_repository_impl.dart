@@ -1,6 +1,6 @@
-import 'package:riversafe_sac/data/services/river_service.dart';
-import 'package:riversafe_sac/domain/entities/river_condition.dart';
-import 'package:riversafe_sac/domain/repositories/river_repository.dart';
+import 'package:sacriversafety/data/services/river_service.dart';
+import 'package:sacriversafety/domain/entities/river_condition.dart';
+import 'package:sacriversafety/domain/repositories/river_repository.dart';
 
 /// Implementation of RiverRepository
 class RiverRepositoryImpl implements RiverRepository {

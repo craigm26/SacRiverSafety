@@ -1,5 +1,5 @@
 # PRD-E · River Conditions Page
-**Parent project:** RiverSafeSac.com  
+**Parent project:** sacriversafety.com  
 **Feature:** Interactive river conditions display with live data and safety alerts
 
 ## 1. Purpose

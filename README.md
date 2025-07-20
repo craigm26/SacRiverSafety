@@ -1,4 +1,4 @@
-# SacRiverSafe
+# SacRiverSafety
 
 A data-driven, mobile-friendly Flutter application for Sacramento & American River safety information. This app provides real-time river conditions, safety alerts, and community resources to help prevent drowning incidents and promote safe outdoor recreation.
 

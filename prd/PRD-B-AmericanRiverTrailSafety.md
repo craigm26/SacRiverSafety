@@ -1,5 +1,5 @@
 # PRD-B · American River Trail Safety
-**Parent project:** RiverSafeSac.com  
+**Parent project:** SacRiverSafety.com  
 **Delivery:** Flutter web app (sub‑path `/trail`) or standalone Flutter application
 
 ## 1. Purpose
@@ -55,7 +55,7 @@ Educate cyclists, walkers, and equestrians on safe use of the American River Par
 - **Local Storage**: SharedPreferences for offline data caching
 
 ### Integration Options
-1. **Flutter Web Module** (`/trail` on main RiverSafeSac.com)
+1. **Flutter Web Module** (`/trail` on main sacriversafety.com)
    - Shared Flutter widgets and design system
    - Unified analytics and deployment pipeline
    - Cross-linking between river and trail safety features

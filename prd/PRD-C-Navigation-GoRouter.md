@@ -1,5 +1,5 @@
 # PRD-C · Navigation with Go Router
-**Parent project:** RiverSafeSac.com  
+**Parent project:** sacriversafety.com  
 **Feature:** Declarative routing system with deep linking support
 
 ## 1. Purpose
@@ -112,8 +112,8 @@ GoRoute(
 - **Hash routing**: Support for `#` based routing on older browsers
 
 ### 7.2 Mobile Deep Links
-- **iOS**: Universal Links for `riversafesac.com`
-- **Android**: App Links for `riversafesac.com`
+- **iOS**: Universal Links for `sacriversafety.com`
+- **Android**: App Links for `sacriversafety.com`
 - **Custom schemes**: `riversafe://river/conditions/11446500`
 
 ### 7.3 Social Media Integration

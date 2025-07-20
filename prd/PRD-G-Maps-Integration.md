@@ -1,5 +1,5 @@
 # PRD-G · Maps Integration with Flutter Map
-**Parent project:** RiverSafeSac.com  
+**Parent project:** sacriversafety.com  
 **Feature:** Interactive mapping system for river conditions, trail amenities, and safety information
 
 ## 1. Purpose

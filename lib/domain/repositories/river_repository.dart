@@ -1,4 +1,4 @@
-import 'package:riversafe_sac/domain/entities/river_condition.dart';
+import 'package:sacriversafety/domain/entities/river_condition.dart';
 
 /// Repository interface for river-related data operations
 abstract class RiverRepository {

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:riversafe_sac/domain/entities/river_condition.dart';
-import 'package:riversafe_sac/domain/repositories/river_repository.dart';
+import 'package:sacriversafety/domain/entities/river_condition.dart';
+import 'package:sacriversafety/domain/repositories/river_repository.dart';
 
 /// State for river conditions
 abstract class RiverState extends Equatable {
