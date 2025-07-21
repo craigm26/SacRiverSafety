@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:sacriversafety/domain/entities/river_condition.dart';
+import 'package:sacriversafety/domain/entities/safety_alert.dart';
 import 'package:sacriversafety/domain/repositories/river_repository.dart';
 
 /// State for river conditions
@@ -20,7 +21,7 @@ class RiverLoading extends RiverState {}
 /// Loaded state with river data
 class RiverLoaded extends RiverState {
   final RiverCondition riverCondition;
-  final List<String> safetyAlerts;
+  final List<SafetyAlert> safetyAlerts;
 
   const RiverLoaded({
     required this.riverCondition,

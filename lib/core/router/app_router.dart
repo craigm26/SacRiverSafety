@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sacriversafety/presentation/pages/home_page.dart';
+import 'package:sacriversafety/presentation/pages/river_conditions_page.dart';
+import 'package:sacriversafety/presentation/pages/interactive_map_page.dart';
+import 'package:sacriversafety/presentation/pages/safety_education_page.dart';
+import 'package:sacriversafety/presentation/pages/trail_safety_page.dart';
+import 'package:sacriversafety/presentation/pages/statistics_page.dart';
+import 'package:sacriversafety/presentation/pages/safety_alerts_page.dart';
+import 'package:sacriversafety/presentation/pages/emergency_info_page.dart';
+import 'package:sacriversafety/presentation/pages/about_page.dart';
+import 'package:sacriversafety/presentation/pages/placeholder_page.dart';
+import 'package:sacriversafety/presentation/pages/resource_directory_page.dart';
+import 'package:sacriversafety/presentation/pages/pdf_flyers_page.dart';
+import 'package:sacriversafety/presentation/pages/volunteer_resources_page.dart';
 import 'package:sacriversafety/presentation/widgets/app_shell.dart';
+import 'package:sacriversafety/core/router/route_constants.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: '/',
+    debugLogDiagnostics: true,
     routes: [
       // Home page
       GoRoute(
-        path: '/',
+        path: RouteConstants.home,
+        name: RouteConstants.homeName,
         builder: (context, state) => const AppShell(
-          title: 'sacriversafety',
+          title: 'Sac River Safety',
           child: HomePage(),
         ),
       ),
       
-      // River Conditions
+      // River routes
       GoRoute(
-        path: '/river-conditions',
+        path: RouteConstants.river,
+        name: RouteConstants.riverName,
         builder: (context, state) => const AppShell(
           title: 'River Conditions',
           showBackButton: true,
@@ -26,9 +42,10 @@ class AppRouter {
         ),
       ),
       
-      // Trail Safety
+      // Trail routes
       GoRoute(
-        path: '/trail-safety',
+        path: RouteConstants.trail,
+        name: RouteConstants.trailName,
         builder: (context, state) => const AppShell(
           title: 'Trail Safety',
           showBackButton: true,
@@ -38,7 +55,8 @@ class AppRouter {
       
       // Interactive Map
       GoRoute(
-        path: '/map',
+        path: RouteConstants.map,
+        name: RouteConstants.mapName,
         builder: (context, state) => const AppShell(
           title: 'Interactive Map',
           showBackButton: true,
@@ -46,79 +64,10 @@ class AppRouter {
         ),
       ),
       
-      // Safety Alerts
+      // Safety Education page
       GoRoute(
-        path: '/alerts',
-        builder: (context, state) => const AppShell(
-          title: 'Safety Alerts',
-          showBackButton: true,
-          child: SafetyAlertsPage(),
-        ),
-      ),
-      
-      // Emergency Info
-      GoRoute(
-        path: '/emergency',
-        builder: (context, state) => const AppShell(
-          title: 'Emergency Info',
-          showBackButton: true,
-          child: EmergencyInfoPage(),
-        ),
-      ),
-      
-      // Life Jacket Locations
-      GoRoute(
-        path: '/life-jackets',
-        builder: (context, state) => const AppShell(
-          title: 'Life Jacket Locations',
-          showBackButton: true,
-          child: LifeJacketsPage(),
-        ),
-      ),
-      
-      // First Aid
-      GoRoute(
-        path: '/first-aid',
-        builder: (context, state) => const AppShell(
-          title: 'First Aid',
-          showBackButton: true,
-          child: FirstAidPage(),
-        ),
-      ),
-      
-      // About
-      GoRoute(
-        path: '/about',
-        builder: (context, state) => const AppShell(
-          title: 'About',
-          showBackButton: true,
-          child: AboutPage(),
-        ),
-      ),
-      
-      // Statistics
-      GoRoute(
-        path: '/statistics',
-        builder: (context, state) => const AppShell(
-          title: 'Statistics',
-          showBackButton: true,
-          child: StatisticsPage(),
-        ),
-      ),
-      
-      // Incident History
-      GoRoute(
-        path: '/incidents',
-        builder: (context, state) => const AppShell(
-          title: 'Incident History',
-          showBackButton: true,
-          child: IncidentHistoryPage(),
-        ),
-      ),
-      
-      // Safety Education
-      GoRoute(
-        path: '/education',
+        path: RouteConstants.safetyEducation,
+        name: RouteConstants.safetyEducationName,
         builder: (context, state) => const AppShell(
           title: 'Safety Education',
           showBackButton: true,
@@ -126,341 +75,178 @@ class AppRouter {
         ),
       ),
       
-      // Volunteer
+      // Statistics page
+      GoRoute(
+        path: RouteConstants.statistics,
+        name: RouteConstants.statisticsName,
+        builder: (context, state) => const AppShell(
+          title: 'Statistics',
+          showBackButton: true,
+          child: StatisticsPage(),
+        ),
+      ),
+      
+      // Safety Alerts page
+      GoRoute(
+        path: RouteConstants.alerts,
+        name: RouteConstants.alertsName,
+        builder: (context, state) => const AppShell(
+          title: 'Safety Alerts',
+          showBackButton: true,
+          child: SafetyAlertsPage(),
+        ),
+      ),
+      
+      // Emergency Info page
+      GoRoute(
+        path: '/emergency',
+        name: 'emergency',
+        builder: (context, state) => const AppShell(
+          title: 'Emergency Information',
+          showBackButton: true,
+          child: EmergencyInfoPage(),
+        ),
+      ),
+      
+      // About page
+      GoRoute(
+        path: RouteConstants.about,
+        name: RouteConstants.aboutName,
+        builder: (context, state) => const AppShell(
+          title: 'About',
+          showBackButton: true,
+          child: AboutPage(),
+        ),
+      ),
+      
+      // Resource Directory page
+      GoRoute(
+        path: RouteConstants.resourceDirectory,
+        name: RouteConstants.resourceDirectoryName,
+        builder: (context, state) => const AppShell(
+          title: 'Resource Directory',
+          showBackButton: true,
+          child: ResourceDirectoryPage(),
+        ),
+      ),
+      
+      // PDF Flyers page
+      GoRoute(
+        path: RouteConstants.pdfFlyers,
+        name: RouteConstants.pdfFlyersName,
+        builder: (context, state) => const AppShell(
+          title: 'Safety Flyers',
+          showBackButton: true,
+          child: PdfFlyersPage(),
+        ),
+      ),
+      
+      // Volunteer Resources page
+      GoRoute(
+        path: RouteConstants.volunteerResources,
+        name: RouteConstants.volunteerResourcesName,
+        builder: (context, state) => const AppShell(
+          title: 'Volunteer Resources',
+          showBackButton: true,
+          child: VolunteerResourcesPage(),
+        ),
+      ),
+      
+      // Life Jacket Locations page
+      GoRoute(
+        path: '/life-jackets',
+        name: 'life-jackets',
+        builder: (context, state) => const AppShell(
+          title: 'Life Jacket Locations',
+          showBackButton: true,
+          child: PlaceholderPage(
+            title: 'Life Jacket Locations',
+            description: 'Find borrow-a-PFD stations and life jacket rental locations throughout the Sacramento region.',
+            icon: Icons.safety_divider,
+            iconColor: Colors.blue,
+          ),
+        ),
+      ),
+      
+      // First Aid page
+      GoRoute(
+        path: '/first-aid',
+        name: 'first-aid',
+        builder: (context, state) => const AppShell(
+          title: 'First Aid',
+          showBackButton: true,
+          child: PlaceholderPage(
+            title: 'First Aid Information',
+            description: 'Learn essential first aid procedures for water-related emergencies and injuries.',
+            icon: Icons.medical_services,
+            iconColor: Colors.red,
+          ),
+        ),
+      ),
+      
+      // Incident History page
+      GoRoute(
+        path: '/incidents',
+        name: 'incidents',
+        builder: (context, state) => const AppShell(
+          title: 'Incident History',
+          showBackButton: true,
+          child: PlaceholderPage(
+            title: 'Incident History',
+            description: 'View historical incident reports and safety data for the Sacramento region.',
+            icon: Icons.history,
+            iconColor: Colors.orange,
+          ),
+        ),
+      ),
+      
+      // Volunteer page
       GoRoute(
         path: '/volunteer',
+        name: 'volunteer',
         builder: (context, state) => const AppShell(
           title: 'Volunteer',
           showBackButton: true,
-          child: VolunteerPage(),
+          child: PlaceholderPage(
+            title: 'Get Involved',
+            description: 'Join our volunteer program and help promote water safety in the Sacramento community.',
+            icon: Icons.volunteer_activism,
+            iconColor: Colors.green,
+          ),
         ),
       ),
       
-      // Donate
+      // Donate page
       GoRoute(
         path: '/donate',
+        name: 'donate',
         builder: (context, state) => const AppShell(
           title: 'Donate',
           showBackButton: true,
-          child: DonatePage(),
+          child: PlaceholderPage(
+            title: 'Support River Safety',
+            description: 'Help us continue our mission by making a donation to support water safety programs.',
+            icon: Icons.favorite,
+            iconColor: Colors.pink,
+          ),
         ),
       ),
       
-      // Report Issue
+      // Report Issue page
       GoRoute(
         path: '/report',
+        name: 'report',
         builder: (context, state) => const AppShell(
           title: 'Report Issue',
           showBackButton: true,
-          child: ReportIssuePage(),
+          child: PlaceholderPage(
+            title: 'Report Safety Concerns',
+            description: 'Report safety issues, hazards, or incidents to help keep our community safe.',
+            icon: Icons.report,
+            iconColor: Colors.red,
+          ),
         ),
       ),
     ],
-    errorBuilder: (context, state) => const AppShell(
-      title: 'Page Not Found',
-      showBackButton: true,
-      child: ErrorPage(),
-    ),
   );
-}
-
-// Placeholder pages - these will be implemented later
-class RiverConditionsPage extends StatelessWidget {
-  const RiverConditionsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.water_drop, size: 64, color: Colors.blue),
-          SizedBox(height: 16),
-          Text('River Conditions Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class TrailSafetyPage extends StatelessWidget {
-  const TrailSafetyPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.directions_bike, size: 64, color: Colors.green),
-          SizedBox(height: 16),
-          Text('Trail Safety Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class InteractiveMapPage extends StatelessWidget {
-  const InteractiveMapPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.map, size: 64, color: Colors.orange),
-          SizedBox(height: 16),
-          Text('Interactive Map Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class SafetyAlertsPage extends StatelessWidget {
-  const SafetyAlertsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.warning, size: 64, color: Colors.red),
-          SizedBox(height: 16),
-          Text('Safety Alerts Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class EmergencyInfoPage extends StatelessWidget {
-  const EmergencyInfoPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.emergency, size: 64, color: Colors.red),
-          SizedBox(height: 16),
-          Text('Emergency Info Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class LifeJacketsPage extends StatelessWidget {
-  const LifeJacketsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.safety_divider, size: 64, color: Colors.blue),
-          SizedBox(height: 16),
-          Text('Life Jacket Locations Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class FirstAidPage extends StatelessWidget {
-  const FirstAidPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.medical_services, size: 64, color: Colors.red),
-          SizedBox(height: 16),
-          Text('First Aid Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.info, size: 64, color: Colors.blue),
-          SizedBox(height: 16),
-          Text('About Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class StatisticsPage extends StatelessWidget {
-  const StatisticsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.analytics, size: 64, color: Colors.purple),
-          SizedBox(height: 16),
-          Text('Statistics Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class IncidentHistoryPage extends StatelessWidget {
-  const IncidentHistoryPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.history, size: 64, color: Colors.orange),
-          SizedBox(height: 16),
-          Text('Incident History Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class SafetyEducationPage extends StatelessWidget {
-  const SafetyEducationPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.school, size: 64, color: Colors.green),
-          SizedBox(height: 16),
-          Text('Safety Education Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class VolunteerPage extends StatelessWidget {
-  const VolunteerPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.volunteer_activism, size: 64, color: Colors.green),
-          SizedBox(height: 16),
-          Text('Volunteer Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class DonatePage extends StatelessWidget {
-  const DonatePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.favorite, size: 64, color: Colors.red),
-          SizedBox(height: 16),
-          Text('Donate Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class ReportIssuePage extends StatelessWidget {
-  const ReportIssuePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.report, size: 64, color: Colors.orange),
-          SizedBox(height: 16),
-          Text('Report Issue Page', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('Coming Soon...'),
-        ],
-      ),
-    );
-  }
-}
-
-class ErrorPage extends StatelessWidget {
-  const ErrorPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.error, size: 64, color: Colors.red),
-          SizedBox(height: 16),
-          Text('Page Not Found', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 8),
-          Text('The page you are looking for does not exist.'),
-        ],
-      ),
-    );
-  }
 } 

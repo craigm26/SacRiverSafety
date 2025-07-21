@@ -1,11 +1,14 @@
 # PRD-H · Local Storage with Hive
+
 **Parent project:** sacriversafety.com  
 **Feature:** Offline-capable data persistence and caching system
 
 ## 1. Purpose
+
 Implement a robust local storage system using Hive to enable offline functionality, improve app performance, and provide seamless user experience even with poor connectivity.
 
 ## 2. Goals
+
 - Enable offline access to river conditions and trail safety data
 - Improve app performance through intelligent caching
 - Reduce API calls and data usage
@@ -14,12 +17,14 @@ Implement a robust local storage system using Hive to enable offline functionali
 - Maintain data consistency across app sessions
 
 ## 3. Non-Goals
+
 - Full offline app functionality (some features require internet)
 - User-generated content storage (handled separately)
 - Complex data synchronization conflicts (simple last-write-wins)
 - Cross-device data synchronization (device-specific storage)
 
 ## 4. User Stories & Use Cases
+
 | User Story | Acceptance Criteria |
 |------------|-------------------|
 | **Offline Access**: User has no internet connection | Can view cached river conditions and trail data |
@@ -31,6 +36,7 @@ Implement a robust local storage system using Hive to enable offline functionali
 ## 5. Data Storage Strategy
 
 ### 5.1 Cache Categories
+
 | Data Type | Cache Duration | Priority | Description |
 |-----------|----------------|----------|-------------|
 | **River Conditions** | 15 minutes | High | USGS gauge data, critical for safety |
@@ -41,6 +47,7 @@ Implement a robust local storage system using Hive to enable offline functionali
 | **User Preferences** | Persistent | High | App settings and preferences |
 
 ### 5.2 Storage Structure
+
 ```
 Hive Boxes:
 ├── river_conditions_cache
@@ -68,6 +75,7 @@ Hive Boxes:
 ## 6. Technical Implementation
 
 ### 6.1 Hive Configuration
+
 ```dart
 // lib/core/storage/hive_config.dart
 class HiveConfig {
@@ -99,6 +107,7 @@ class HiveConfig {
 ```
 
 ### 6.2 Cache Models
+
 ```dart
 // lib/data/models/cached_river_data.dart
 @HiveType(typeId: 1)
@@ -154,6 +163,7 @@ class CachedRiverDataAdapter extends TypeAdapter<CachedRiverData> {
 ```
 
 ### 6.3 Cache Service
+
 ```dart
 // lib/data/services/cache_service.dart
 class CacheService {
@@ -271,6 +281,7 @@ class CacheService {
 ```
 
 ### 6.4 Repository Integration
+
 ```dart
 // lib/data/repositories/river_repository_impl.dart
 class RiverRepositoryImpl implements RiverRepository {
@@ -347,6 +358,7 @@ class RiverRepositoryImpl implements RiverRepository {
 ## 7. Offline Mode Management
 
 ### 7.1 Connectivity Service
+
 ```dart
 // lib/data/services/connectivity_service.dart
 class ConnectivityService {
@@ -382,6 +394,7 @@ class ConnectivityService {
 ```
 
 ### 7.2 Offline Mode Widget
+
 ```dart
 // lib/presentation/widgets/offline_indicator.dart
 class OfflineIndicator extends StatelessWidget {
@@ -422,6 +435,7 @@ class OfflineIndicator extends StatelessWidget {
 ## 8. Data Synchronization
 
 ### 8.1 Sync Service
+
 ```dart
 // lib/data/services/sync_service.dart
 class SyncService {
@@ -469,24 +483,28 @@ class SyncService {
 ## 9. Implementation Phases
 
 ### Phase 1: Basic Caching (Week 1)
+
 - [ ] Set up Hive configuration and adapters
 - [ ] Implement CacheService with basic operations
 - [ ] Add caching to RiverRepository
 - [ ] Test basic cache functionality
 
 ### Phase 2: Offline Mode (Week 2)
+
 - [ ] Implement ConnectivityService
 - [ ] Add offline mode indicators
 - [ ] Create offline data access patterns
 - [ ] Test offline functionality
 
 ### Phase 3: Data Synchronization (Week 3)
+
 - [ ] Implement SyncService
 - [ ] Add background sync capabilities
 - [ ] Create cache expiration management
 - [ ] Test sync scenarios
 
 ### Phase 4: Performance & Optimization (Week 4)
+
 - [ ] Add cache size management
 - [ ] Implement cache compression
 - [ ] Add cache analytics
@@ -495,6 +513,7 @@ class SyncService {
 ## 10. Testing Strategy
 
 ### 10.1 Unit Tests
+
 ```dart
 test('cache service stores and retrieves river data', () async {
   final cacheService = CacheService();
@@ -516,18 +535,21 @@ test('cache service stores and retrieves river data', () async {
 ```
 
 ### 10.2 Integration Tests
+
 - Test cache persistence across app restarts
 - Test offline mode functionality
 - Test data synchronization
 - Test cache expiration and cleanup
 
 ### 10.3 Performance Tests
+
 - Test cache read/write performance
 - Test memory usage with large datasets
 - Test cache size management
 - Test concurrent access patterns
 
 ## 11. Success Metrics
+
 - **Offline Availability**: 90% of core features available offline
 - **Cache Hit Rate**: >80% for frequently accessed data
 - **App Launch Time**: <2 seconds with cached data
@@ -535,13 +557,15 @@ test('cache service stores and retrieves river data', () async {
 - **Storage Efficiency**: <50MB total cache size
 
 ## 12. Dependencies
+
 - **hive**: Local storage (already in pubspec.yaml)
 - **hive_flutter**: Flutter integration (already in pubspec.yaml)
 - **connectivity_plus**: Network connectivity (already in pubspec.yaml)
 
 ## 13. Future Enhancements
+
 - **Cross-Device Sync**: Cloud-based data synchronization
 - **Advanced Caching**: Predictive caching based on user patterns
 - **Data Compression**: Reduce storage footprint
 - **Cache Analytics**: Track cache performance and usage patterns
-- **Selective Sync**: User-controlled data synchronization 
+- **Selective Sync**: User-controlled data synchronization

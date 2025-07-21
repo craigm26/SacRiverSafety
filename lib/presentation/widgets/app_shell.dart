@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sacriversafety/presentation/themes/app_theme.dart';
+import 'package:sacriversafety/presentation/widgets/language_selector.dart';
+import 'package:sacriversafety/core/services/language_service.dart';
 
 class AppShell extends StatefulWidget {
   final Widget child;
@@ -22,12 +24,55 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  String _currentLanguage = 'en';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCurrentLanguage();
+  }
+
+  Future<void> _loadCurrentLanguage() async {
+    final language = await LanguageService.getCurrentLanguage();
+    setState(() {
+      _currentLanguage = language;
+    });
+  }
+
+  void _onLanguageChanged(String languageCode) async {
+    try {
+      await LanguageService.setLanguage(languageCode);
+      setState(() {
+        _currentLanguage = languageCode;
+      });
+      // TODO: Implement actual language change logic
+      // This would typically involve:
+      // 1. Updating the app's locale
+      // 2. Reloading the UI with new translations
+      print('Language changed to: $languageCode');
+    } catch (e) {
+      print('Error changing language: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () async {
+        if (widget.showBackButton) {
+          // If we're on a page with back button, handle navigation
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          } else {
+            context.go('/');
+          }
+          return false; // Prevent default back behavior
+        }
+        return true; // Allow default back behavior for home page
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
         backgroundColor: AppTheme.primaryBlue,
@@ -36,16 +81,37 @@ class _AppShellState extends State<AppShell> {
         leading: widget.showBackButton
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed: () => context.pop(),
+                onPressed: () {
+                  // Try to pop first, if not possible, go to home
+                  try {
+                    if (Navigator.canPop(context)) {
+                      Navigator.pop(context);
+                    } else {
+                      context.go('/');
+                    }
+                  } catch (e) {
+                    // Fallback to home if navigation fails
+                    context.go('/');
+                  }
+                },
               )
             : IconButton(
                 icon: const Icon(Icons.menu),
                 onPressed: () => _scaffoldKey.currentState?.openDrawer(),
               ),
-        actions: widget.actions,
+        actions: [
+          // Language selector
+          LanguageSelector(
+            currentLanguage: _currentLanguage,
+            onLanguageChanged: _onLanguageChanged,
+          ),
+          // Additional actions
+          if (widget.actions != null) ...widget.actions!,
+        ],
       ),
       drawer: _buildDrawer(context),
-      body: widget.child,
+        body: widget.child,
+      ),
     );
   }
 
@@ -66,32 +132,16 @@ class _AppShellState extends State<AppShell> {
   Widget _buildDrawerHeader(BuildContext context) {
     return DrawerHeader(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppTheme.primaryBlue,
-            AppTheme.secondaryBlue,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.white,
-            child: Icon(
-              Icons.water,
-              size: 40,
-              color: AppTheme.primaryBlue,
-            ),
-          ),
           const SizedBox(height: 12),
           Text(
-            'SacRiverSafety',
+            'Sac River Safety',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Colors.white,
+              color: AppTheme.primaryBlue,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -99,7 +149,7 @@ class _AppShellState extends State<AppShell> {
           Text(
             'Stay Safe on Our Rivers',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.white70,
+              color: AppTheme.primaryBlue,
             ),
           ),
         ],
@@ -141,7 +191,7 @@ class _AppShellState extends State<AppShell> {
               title: 'Trail Safety',
               subtitle: 'Trail conditions & rules',
               onTap: () {
-                context.go('/trail-safety');
+                context.go('/trail');
                 Navigator.pop(context);
               },
             ),
@@ -211,7 +261,7 @@ class _AppShellState extends State<AppShell> {
               context,
               icon: Icons.info,
               title: 'About',
-              subtitle: 'About sacriversafety',
+              subtitle: 'About SacRiverSafety',
               onTap: () {
                 context.go('/about');
                 Navigator.pop(context);
@@ -224,6 +274,36 @@ class _AppShellState extends State<AppShell> {
               subtitle: 'Drowning statistics & data',
               onTap: () {
                 context.go('/statistics');
+                Navigator.pop(context);
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              icon: Icons.library_books,
+              title: 'Resource Directory',
+              subtitle: 'Official resources & data sources',
+              onTap: () {
+                context.go('/resources');
+                Navigator.pop(context);
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              icon: Icons.picture_as_pdf,
+              title: 'Safety Flyers',
+              subtitle: 'Download safety documents & guides',
+              onTap: () {
+                context.go('/flyers');
+                Navigator.pop(context);
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              icon: Icons.volunteer_activism,
+              title: 'Volunteer Resources',
+              subtitle: 'Tools for safety outreach & distribution',
+              onTap: () {
+                context.go('/volunteer-resources');
                 Navigator.pop(context);
               },
             ),
@@ -243,7 +323,7 @@ class _AppShellState extends State<AppShell> {
               title: 'Safety Education',
               subtitle: 'Learn about river safety',
               onTap: () {
-                context.go('/education');
+                context.go('/safety-education');
                 Navigator.pop(context);
               },
             ),
@@ -284,6 +364,11 @@ class _AppShellState extends State<AppShell> {
               },
             ),
           ],
+        ),
+        // Language selector in drawer
+        DrawerLanguageSelector(
+          currentLanguage: _currentLanguage,
+          onLanguageChanged: _onLanguageChanged,
         ),
       ],
     );

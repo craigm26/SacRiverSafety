@@ -1,210 +1,115 @@
 # SacRiverSafety
 
-A data-driven, mobile-friendly Flutter application for Sacramento & American River safety information. This app provides real-time river conditions, safety alerts, and community resources to help prevent drowning incidents and promote safe outdoor recreation.
+A data-driven, mobile-friendly Flutter application that consolidates drowning statistics, live river conditions, safety resources, and community stories for the Sacramento & American River corridor.
 
 ## Features
 
-- **Live River Conditions**: Real-time water levels and safety data from USGS gauges
-- **Trail Safety**: American River Parkway trail conditions and etiquette
-- **Safety Alerts**: Automated warnings for dangerous conditions
-- **Community Resources**: Life jacket loaner stations and emergency contacts
-- **Cross-Platform**: Works on Web, iOS, and Android
+- **Interactive Map Interface**: Comprehensive map showing Sacramento & American River systems with real-time gauge data
+- **River Conditions**: Live USGS gauge readings with color-coded safety levels
+- **Trail Safety**: American River Trail conditions and amenities
+- **Safety Education**: Educational content and resources
+- **Drowning Statistics**: Real-time statistics and incident data
+- **Safety Alerts**: Current safety alerts and warnings
 
 ## Getting Started
 
 ### Prerequisites
 
-1. **Install Flutter SDK** (version 3.19.0 or higher):
-   - Download from [flutter.dev](https://flutter.dev/docs/get-started/install)
-   - Add Flutter to your PATH
-   - Run `flutter doctor` to verify installation
-
-2. **Install Development Tools**:
-   - **VS Code** with Flutter extension (recommended)
-   - **Android Studio** with Flutter plugin
-   - **Xcode** (for iOS development, macOS only)
+- Flutter SDK (>=3.8.0)
+- Dart SDK (>=3.0.0)
+- Android Studio / VS Code with Flutter extensions
 
 ### Installation
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/SacRiverSafety.git
-   cd SacRiverSafety
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   flutter pub get
-   ```
-
-3. **Run the app**:
-   ```bash
-   # For web
-   flutter run -d chrome
-   
-   # For Android
-   flutter run -d android
-   
-   # For iOS (macOS only)
-   flutter run -d ios
-   ```
-
-## Project Structure
-
-```
-lib/
-├── main.dart                    # App entrypoint
-├── app.dart                     # MaterialApp configuration
-├── core/
-│   ├── di/                      # Dependency injection setup
-│   ├── error/                   # Error handling & exceptions
-│   ├── utils/                   # Utility functions & helpers
-│   └── constants/               # App constants & configuration
-├── data/
-│   ├── models/                  # Data models & DTOs
-│   ├── repositories/            # Repository implementations
-│   ├── services/                # External service integrations
-│   └── sources/                 # Data sources (local/remote)
-├── domain/
-│   ├── entities/                # Business entities
-│   ├── repositories/            # Repository interfaces
-│   └── usecases/               # Business logic & use cases
-├── presentation/
-│   ├── cubits/                  # State management (Cubit/Bloc)
-│   ├── pages/                   # Screen widgets
-│   ├── widgets/                 # Reusable UI components
-│   └── themes/                  # App theming & styling
-└── assets/
-    ├── images/                  # App images and icons
-    └── data/                    # Static data files
-```
-
-## Development
-
-### Code Style
-
-This project follows Flutter's official style guide and uses `flutter_lints` for code quality. Run the following commands:
-
+1. Clone the repository:
 ```bash
-# Format code
-flutter format .
-
-# Analyze code
-flutter analyze
-
-# Run tests
-flutter test
+git clone https://github.com/yourusername/SacRiverSafety.git
+cd SacRiverSafety
 ```
 
-### State Management
-
-This project uses **flutter_bloc** with **Cubit-first pattern** for state management. Key concepts:
-
-- **Cubits**: Simple state management with minimal boilerplate
-- **Blocs**: Used only when event-to-state mapping is complex
-- **BlocBuilder**: Widgets that rebuild based on state changes
-- **BlocProvider**: Dependency injection for Cubits/Blocs
-- **Equatable**: For efficient state comparisons
-
-### Architecture
-
-We follow a clean, layered architecture:
-
-```
-┌──────────────┐
-│   UI Layer   │   Flutter Widgets / Views
-└──────┬───────┘
-       ▼   (calls)
-┌──────────────┐
-│  Cubit/Bloc  │   Pure Dart → emits State objects
-└──────┬───────┘
-       ▼   (depends on)
-┌──────────────┐  Services / Repositories (singletons via get_it)
-│   Services &  │  – RiverService, TrailService
-│  Repositories │  – RiverRepository, TrailRepository
-└──────┬───────┘  – Data caching and API integration
-       ▼   (wraps)
-┌──────────────┐  Data sources & SDKs
-│  Data Layer  │  – USGS API, Weather APIs, Local Storage
-└──────────────┘
-```
-
-### Testing
-
+2. Install dependencies:
 ```bash
-# Run all tests
-flutter test
-
-# Run tests with coverage
-flutter test --coverage
-
-# Run specific test file
-flutter test test/features/home/home_test.dart
+flutter pub get
 ```
 
-## Deployment
+3. Run the app:
+```bash
+flutter run
+```
 
-### Web Deployment (DigitalOcean)
+### API Configuration (Optional)
 
-1. **Build for production**:
-   ```bash
-   flutter build web --release
-   ```
+The app works without API keys, but you can enhance functionality by setting up API keys:
 
-2. **Deploy to DigitalOcean App Platform**:
-   - Connect your GitHub repository
-   - Use the build command: `flutter build web --release`
-   - Set output directory to: `build/web`
+#### OpenWeather API (Optional)
+To use OpenWeather API for enhanced weather data:
 
-### Mobile App Distribution
+1. Get a free API key from [OpenWeather](https://openweathermap.org/api)
+2. Set the environment variable:
+```bash
+# Windows
+set OPENWEATHER_API_KEY=your_api_key_here
 
-1. **Android**:
-   ```bash
-   flutter build appbundle
-   # Upload to Google Play Console
-   ```
+# macOS/Linux
+export OPENWEATHER_API_KEY=your_api_key_here
 
-2. **iOS**:
-   ```bash
-   flutter build ios --release
-   # Archive and upload via Xcode
-   ```
+# Or run Flutter with the key
+flutter run --dart-define=OPENWEATHER_API_KEY=your_api_key_here
+```
 
-## Contributing
+#### AirNow API (Optional)
+For air quality data:
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+1. Get a free API key from [AirNow](https://docs.airnowapi.org/)
+2. Set the environment variable:
+```bash
+# Windows
+set AIRNOW_API_KEY=your_api_key_here
 
-### Development Workflow
+# macOS/Linux
+export AIRNOW_API_KEY=your_api_key_here
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes and add tests
-4. Run tests: `flutter test`
-5. Commit your changes: `git commit -m 'Add amazing feature'`
-6. Push to the branch: `git push origin feature/amazing-feature`
-7. Open a Pull Request
+# Or run Flutter with the key
+flutter run --dart-define=AIRNOW_API_KEY=your_api_key_here
+```
+
+## Architecture
+
+The app follows a clean architecture pattern with:
+
+- **Domain Layer**: Entities, repositories interfaces, and use cases
+- **Data Layer**: Repository implementations, services, and data sources
+- **Presentation Layer**: UI components, pages, and state management (BLoC/Cubit)
+- **Core**: Constants, error handling, dependency injection, and routing
+
+## Key Technologies
+
+- **Flutter**: Cross-platform UI framework
+- **BLoC/Cubit**: State management
+- **GoRouter**: Navigation and routing
+- **Dio**: HTTP client for API calls
+- **Flutter Map**: Interactive map implementation
+- **GetIt**: Dependency injection
 
 ## Data Sources
 
-- **USGS Water Data**: Real-time river gauge information
-- **Sacramento County Coroner**: Drowning incident statistics
-- **National Weather Service**: Weather and air quality data
-- **Community Reports**: User-submitted safety information
+- **USGS Water Data**: River gauge readings and water levels
+- **National Weather Service**: Weather conditions and forecasts
+- **Sacramento County Parks**: Trail conditions and amenities
+- **Local Emergency Services**: Safety alerts and incident data
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Support
 
-For support and questions:
-- Create an issue on GitHub
-- Join our community discussions
-- Contact the development team
-
-## Acknowledgments
-
-- Sacramento County Regional Parks
-- Sacramento Area Bicycle Advocates
-- Local emergency response teams
-- Community volunteers and contributors
+For support or questions, please open an issue on GitHub or contact the development team.

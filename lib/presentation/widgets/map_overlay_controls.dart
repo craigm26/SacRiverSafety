@@ -5,18 +5,22 @@ class MapOverlayControls extends StatelessWidget {
   final bool showRiverGauges;
   final bool showAmenities;
   final bool showSafetyAlerts;
+  final bool showTrailSegments;
   final ValueChanged<bool> onRiverGaugesChanged;
   final ValueChanged<bool> onAmenitiesChanged;
   final ValueChanged<bool> onSafetyAlertsChanged;
+  final ValueChanged<bool> onTrailSegmentsChanged;
 
   const MapOverlayControls({
     super.key,
     required this.showRiverGauges,
     required this.showAmenities,
     required this.showSafetyAlerts,
+    required this.showTrailSegments,
     required this.onRiverGaugesChanged,
     required this.onAmenitiesChanged,
     required this.onSafetyAlertsChanged,
+    required this.onTrailSegmentsChanged,
   });
 
   @override
@@ -75,6 +79,16 @@ class MapOverlayControls extends StatelessWidget {
             value: showSafetyAlerts,
             onChanged: onSafetyAlertsChanged,
             color: Colors.orange,
+          ),
+          const SizedBox(height: 8),
+          _buildLayerToggle(
+            context,
+            icon: Icons.directions_bike,
+            title: 'Trail Segments',
+            subtitle: 'FOLFAN trail network',
+            value: showTrailSegments,
+            onChanged: onTrailSegmentsChanged,
+            color: Colors.purple,
           ),
         ],
       ),

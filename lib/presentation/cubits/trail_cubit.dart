@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:sacriversafety/domain/entities/trail_condition.dart';
+import 'package:sacriversafety/domain/entities/trail_amenity.dart';
+import 'package:sacriversafety/domain/entities/safety_alert.dart';
 import 'package:sacriversafety/domain/repositories/trail_repository.dart';
 
 /// State for trail conditions
@@ -20,7 +22,7 @@ class TrailLoading extends TrailState {}
 /// Loaded state with trail data
 class TrailLoaded extends TrailState {
   final TrailCondition trailCondition;
-  final List<String> safetyAlerts;
+  final List<SafetyAlert> safetyAlerts;
   final List<TrailAmenity> amenities;
 
   const TrailLoaded({
@@ -56,9 +58,9 @@ class TrailCubit extends Cubit<TrailState> {
     emit(TrailLoading());
     
     try {
-      final trailCondition = await _trailRepository.getTrailConditions();
+      final trailCondition = await _trailRepository.getTrailCondition();
       final safetyAlerts = await _trailRepository.getSafetyAlerts();
-      final amenities = await _trailRepository.getAmenities();
+      final amenities = await _trailRepository.getTrailAmenities();
       
       emit(TrailLoaded(
         trailCondition: trailCondition,

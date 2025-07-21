@@ -88,6 +88,18 @@ app.*.map.json
 .env.local
 .env.production
 
+# Python virtual environments
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
 # Generated files
 *.g.dart
 *.freezed.dart
